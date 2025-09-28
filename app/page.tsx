@@ -10,12 +10,7 @@ import { useRouter } from 'next/navigation';
 
 import Image from 'next/image';
 
-interface HomepageProps {
-  onPageChange: (page: 'services' | 'about' | 'contact') => void
-}
-
-
-export default function Homepage({ onPageChange }: HomepageProps) {
+export default function Homepage() {
   const router = useRouter();
 
   const services = [

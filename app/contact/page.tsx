@@ -10,6 +10,14 @@ import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { ImageWithFallback } from '@/components/figma/ImageWithFallback'
 
+type FormValues = {
+  name: string
+  email: string
+  company?: string
+  projectType?: string
+  message: string
+}
+
 export default function Contact() {
   const [status, setStatus] = useState<"idle"|"sending"|"ok"|"error">("idle")
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
@@ -18,8 +26,18 @@ export default function Contact() {
     e.preventDefault()
     setStatus("sending")
     setErrorMsg(null)
+
     const form = e.currentTarget
-    const data = Object.fromEntries(new FormData(form) as any)
+    const fd = new FormData(form)
+
+    // Tipamos cada campo de forma segura (FormData.get puede devolver string | File | null). :contentReference[oaicite:2]{index=2}
+    const data: FormValues = {
+      name: String(fd.get('name') ?? ''),
+      email: String(fd.get('email') ?? ''),
+      company: fd.get('company') ? String(fd.get('company')) : undefined,
+      projectType: fd.get('projectType') ? String(fd.get('projectType')) : undefined,
+      message: String(fd.get('message') ?? ''),
+    }
 
     try {
       const res = await fetch("/api/contact", {
@@ -27,15 +45,23 @@ export default function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       })
+
       if (!res.ok) {
-        const j = await res.json().catch(() => ({}))
-        throw new Error(j?.error || "Request failed")
+        let msg = "Request failed"
+        try {
+          const j = await res.json()
+          if (j?.error) msg = String(j.error)
+        } catch { /* ignore parse error */ }
+        throw new Error(msg)
       }
+
       setStatus("ok")
       form.reset()
-    } catch (err: any) {
+    } catch (err: unknown) {
+      // Manejo de errores sin usar `any`
+      const msg = err instanceof Error ? err.message : "Something went wrong"
       setStatus("error")
-      setErrorMsg(err?.message ?? "Something went wrong")
+      setErrorMsg(msg)
     }
   }
 
@@ -58,14 +84,14 @@ export default function Contact() {
       details: 'Vancouver, BC',
       description: 'Schedule a meeting at our office'
     }
-  ]
+  ] as const
 
   const faqs = [
     { question: 'How long does implementation take?', answer: 'Most implementations take 1-2 weeks depending on complexity and scope.' },
     { question: 'Do you provide ongoing support?', answer: 'Yes, we offer 24/7 monitoring and support for all our automation solutions.' },
     { question: 'What industries do you serve?', answer: 'We work with businesses across all industries, from startups to enterprises.' },
     { question: 'How do you ensure data security?', answer: 'We follow enterprise-grade security practices and comply with industry standards.' },
-  ]
+  ] as const
 
   return (
     <div className="min-h-screen pt-16">
