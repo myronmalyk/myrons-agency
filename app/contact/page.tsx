@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, MessageSquare, Calendar, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -10,44 +11,60 @@ import { Badge } from '@/components/ui/badge'
 import { ImageWithFallback } from '@/components/figma/ImageWithFallback'
 
 export default function Contact() {
+  const [status, setStatus] = useState<"idle"|"sending"|"ok"|"error">("idle")
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setStatus("sending")
+    setErrorMsg(null)
+    const form = e.currentTarget
+    const data = Object.fromEntries(new FormData(form) as any)
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}))
+        throw new Error(j?.error || "Request failed")
+      }
+      setStatus("ok")
+      form.reset()
+    } catch (err: any) {
+      setStatus("error")
+      setErrorMsg(err?.message ?? "Something went wrong")
+    }
+  }
+
   const contactInfo = [
     {
       icon: Mail,
       title: 'Email Us',
-      details: 'hello@myronsagency.com',
-      description: 'Send us an email and we\'ll respond within 24 hours'
+      details: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
+      description: "Send us an email and we'll respond within 24 hours"
     },
     {
       icon: Phone,
       title: 'Call Us',
-      details: '+1 (555) 123-4567',
-      description: 'Mon-Fri from 9am to 6pm PST'
+      details: process.env.NEXT_PUBLIC_CONTACT_PHONE,
+      description: 'Mon–Fri from 9am to 6pm PST'
     },
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: 'San Francisco, CA',
+      details: 'Vancouver, BC',
       description: 'Schedule a meeting at our office'
     }
   ]
 
   const faqs = [
-    {
-      question: 'How long does implementation take?',
-      answer: 'Most implementations take 2-8 weeks depending on complexity and scope.'
-    },
-    {
-      question: 'Do you provide ongoing support?',
-      answer: 'Yes, we offer 24/7 monitoring and support for all our automation solutions.'
-    },
-    {
-      question: 'What industries do you serve?',
-      answer: 'We work with businesses across all industries, from startups to enterprises.'
-    },
-    {
-      question: 'How do you ensure data security?',
-      answer: 'We follow enterprise-grade security practices and comply with industry standards.'
-    }
+    { question: 'How long does implementation take?', answer: 'Most implementations take 1-2 weeks depending on complexity and scope.' },
+    { question: 'Do you provide ongoing support?', answer: 'Yes, we offer 24/7 monitoring and support for all our automation solutions.' },
+    { question: 'What industries do you serve?', answer: 'We work with businesses across all industries, from startups to enterprises.' },
+    { question: 'How do you ensure data security?', answer: 'We follow enterprise-grade security practices and comply with industry standards.' },
   ]
 
   return (
@@ -55,7 +72,6 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="relative pt-16 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-violet-500/5 to-cyan-500/10" />
-        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -125,52 +141,72 @@ export default function Contact() {
                     Fill out the form below and we&apos;ll get back to you within 24 hours.
                   </p>
                 </CardHeader>
+
                 <CardContent className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Name</label>
-                      <Input placeholder="Your full name" />
+                  <form onSubmit={onSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Name</label>
+                        <Input name="name" placeholder="Your full name" required />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Email</label>
+                        <Input name="email" type="email" placeholder="your@email.com" required />
+                      </div>
                     </div>
+
                     <div>
-                      <label className="block text-sm font-medium mb-2">Email</label>
-                      <Input type="email" placeholder="your@email.com" />
+                      <label className="block text-sm font-medium mb-2">Company</label>
+                      <Input name="company" placeholder="Your company name" />
                     </div>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Company</label>
-                    <Input placeholder="Your company name" />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Project Type</label>
-                    <select className="w-full p-3 border border-input rounded-lg bg-background">
-                      <option value="">Select a service</option>
-                      <option value="chatbot">AI Chatbot Development</option>
-                      <option value="automation">Process Automation</option>
-                      <option value="analytics">Predictive Analytics</option>
-                      <option value="marketing">Marketing Automation</option>
-                      <option value="consulting">AI Consulting</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Message</label>
-                    <Textarea 
-                      placeholder="Tell us about your project and requirements..."
-                      rows={5}
-                    />
-                  </div>
-                  
-                  <Button className="w-full bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600 group">
-                    Send Message
-                    <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-                  </Button>
-                  
-                  <p className="text-sm text-muted-foreground text-center">
-                    By submitting this form, you agree to our privacy policy and terms of service.
-                  </p>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Project Type</label>
+                      <select
+                        name="projectType"
+                        className="w-full p-3 border border-input rounded-lg bg-background"
+                        defaultValue=""
+                      >
+                        <option value="" disabled>Select a service</option>
+                        <option value="AI Chatbot Development">AI Chatbot Development</option>
+                        <option value="Process Automation">Process Automation</option>
+                        <option value="Predictive Analytics">Predictive Analytics</option>
+                        <option value="Marketing Automation">Marketing Automation</option>
+                        <option value="AI Consulting">AI Consulting</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Message</label>
+                      <Textarea
+                        name="message"
+                        placeholder="Tell us about your project and requirements..."
+                        rows={5}
+                        required
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      disabled={status === "sending"}
+                      className="w-full bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600 group"
+                    >
+                      {status === "sending" ? "Sending..." : "Send Message"}
+                      <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+                    </Button>
+
+                    {status === "ok" && (
+                      <p className="text-green-600 text-center">Message sent! We&apos;ll be in touch shortly.</p>
+                    )}
+                    {status === "error" && (
+                      <p className="text-red-600 text-center">Something went wrong: {errorMsg}</p>
+                    )}
+
+                    <p className="text-sm text-muted-foreground text-center">
+                      By submitting this form, you agree to our privacy policy and terms of service.
+                    </p>
+                  </form>
                 </CardContent>
               </Card>
             </motion.div>
@@ -219,7 +255,7 @@ export default function Contact() {
                     <h3 className="font-semibold text-lg">Fast Response</h3>
                   </div>
                   <p className="text-muted-foreground">
-                    We typically respond to all inquiries within 2-4 hours during business hours. 
+                    We typically respond to all inquiries within 2–4 hours during business hours.
                     For urgent matters, please call us directly.
                   </p>
                 </CardContent>
@@ -238,9 +274,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Frequently Asked Questions
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
             <p className="text-xl text-muted-foreground">
               Quick answers to common questions about our AI automation services
             </p>
@@ -256,12 +290,8 @@ export default function Contact() {
               >
                 <Card className="hover:shadow-lg transition-all duration-300">
                   <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-3 text-blue-500">
-                      {faq.question}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {faq.answer}
-                    </p>
+                    <h3 className="font-semibold text-lg mb-3 text-blue-500">{faq.question}</h3>
+                    <p className="text-muted-foreground">{faq.answer}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -282,67 +312,6 @@ export default function Contact() {
               <MessageSquare className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
             </Button>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Office Location */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Visit Our Office
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Located in the heart of San Francisco&apos;s tech district, our office is designed
-                to foster innovation and collaboration. We&apos;d love to welcome you for a consultation.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5 text-blue-500" />
-                  <span>123 Innovation Drive, San Francisco, CA 94102</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-blue-500" />
-                  <span>+1 (555) 123-4567</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-blue-500" />
-                  <span>hello@myronsagency.com</span>
-                </div>
-              </div>
-              
-              <div className="mt-8">
-                <Button className="bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600">
-                  Get Directions
-                  <MapPin className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-cyan-500/20 rounded-3xl blur-3xl" />
-              <div className="relative bg-muted/50 rounded-3xl p-8 border border-border/50">
-                <div className="aspect-video bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-                    <p className="text-muted-foreground">Interactive Map</p>
-                    <p className="text-sm text-muted-foreground">Click to view location</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </div>
       </section>
     </div>

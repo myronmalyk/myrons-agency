@@ -1,15 +1,14 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { Zap, Mail, Phone, MapPin, Twitter, Linkedin, Github } from 'lucide-react'
+import { Zap, Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Github, href: '#', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/myron-malykhin-791038279', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/myronmalyk', label: 'GitHub' },
   ]
 
   const footerLinks = {
@@ -113,15 +112,15 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Mail className="w-4 h-4" />
-                <span>hello@myronsagency.com</span>
+                <span>{process.env.NEXT_PUBLIC_EMAIL}</span>
               </div>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Phone className="w-4 h-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>{process.env.NEXT_PUBLIC_PHONE_NUMBER}</span>
               </div>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <MapPin className="w-4 h-4" />
-                <span>San Francisco, CA</span>
+                <span>Vancouver, BC</span>
               </div>
             </div>
           </motion.div>

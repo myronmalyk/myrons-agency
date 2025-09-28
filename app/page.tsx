@@ -6,12 +6,18 @@ import { Button } from '../components/ui/button'
 import { Card, CardContent } from '../components/ui/card'
 import { Badge } from '../components/ui/badge';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { useRouter } from 'next/navigation';
+
+import Image from 'next/image';
 
 interface HomepageProps {
   onPageChange: (page: 'services' | 'about' | 'contact') => void
 }
 
+
 export default function Homepage({ onPageChange }: HomepageProps) {
+  const router = useRouter();
+
   const services = [
     {
       icon: Bot,
@@ -94,12 +100,12 @@ export default function Homepage({ onPageChange }: HomepageProps) {
                 <Button 
                   size="lg" 
                   className="bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
-                  onClick={() => onPageChange('contact')}
+                  onClick={() => router.push('/contact')}
                 >
                   Book a Consultation
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-                <Button variant="outline" size="lg" onClick={() => onPageChange('services')}>
+                <Button variant="outline" size="lg" onClick={() => router.push('/services')}>
                   View Services
                 </Button>
               </div>
@@ -115,7 +121,7 @@ export default function Homepage({ onPageChange }: HomepageProps) {
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1697564264677-a90b9c1ddbcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwdGVjaG5vbG9neSUyMGFpJTIwYXV0b21hdGlvbnxlbnwxfHx8fDE3NTkwMjg5ODF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt="AI Automation Technology"
-                className="relative rounded-3xl shadow-2xl w-full h-auto"
+                className="relative rounded-3xl shadow-2xl w-full h-auto hidden md:block"
               />
             </motion.div>
           </div>
@@ -195,7 +201,7 @@ export default function Homepage({ onPageChange }: HomepageProps) {
             <Button 
               size="lg" 
               variant="outline"
-              onClick={() => onPageChange('services')}
+              onClick={() => router.push('/services')}
               className="group"
             >
               View All Services
@@ -222,7 +228,7 @@ export default function Homepage({ onPageChange }: HomepageProps) {
                 </span>
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Founded in 2025, Myron&apos;s Agency is at the forefront of AI automation technology. 
+                Founded in 2022, Myron&apos;s Agency is at the forefront of AI automation technology. 
                 We help businesses transform their operations through intelligent automation solutions 
                 that drive efficiency, reduce costs, and accelerate growth.
               </p>
@@ -247,7 +253,7 @@ export default function Homepage({ onPageChange }: HomepageProps) {
               </div>
               <Button 
                 size="lg"
-                onClick={() => onPageChange('about')}
+                onClick={() => router.push('/about')}
                 className="group"
               >
                 Learn More About Us
@@ -262,9 +268,11 @@ export default function Homepage({ onPageChange }: HomepageProps) {
               className="relative"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-cyan-500/20 rounded-3xl blur-3xl" />
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1716703742287-2b06c3c6d81a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwY29sbGFib3JhdGlvbiUyMG9mZmljZXxlbnwxfHx8fDE3NTg5NTA5MzR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              <Image
+                src="/images/about.png"
                 alt="Team Collaboration"
+                width={600}
+                height={400}
                 className="relative rounded-3xl shadow-2xl w-full h-auto"
               />
             </motion.div>
@@ -338,12 +346,12 @@ export default function Homepage({ onPageChange }: HomepageProps) {
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
-                onClick={() => onPageChange('contact')}
+                onClick={() => router.push('/contact')}
               >
                 Get in Touch
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" onClick={() => onPageChange('services')}>
+              <Button variant="outline" size="lg" onClick={() => router.push('/services')}>
                 Explore Solutions
               </Button>
             </div>
