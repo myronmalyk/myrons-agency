@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Bot, Zap, TrendingUp, Users, Workflow, Brain } from 'lucide-react'
+import { ArrowRight, Bot, Zap, TrendingUp, Users, Workflow, Brain, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -13,79 +13,92 @@ interface ServicesProps {
 
 export default function Services({ onPageChange }: ServicesProps) {
   const services = [
-    {
-      icon: Zap,
-      title: 'Business Process Automation',
-      description: 'Streamline your operations with intelligent automation that handles repetitive tasks, data processing, and workflow management.',
-      features: [
-        'Document processing and data extraction',
-        'Automated reporting and analytics',
-        'Workflow optimization and management',
-        'Integration with existing systems'
-      ],
-      image: 'https://images.unsplash.com/photo-1758543102367-da8b00ddf4da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGF1dG9tYXRpb24lMjB3b3JrZmxvd3xlbnwxfHx8fDE3NTg5ODM0MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-    },
-    {
-      icon: Bot,
-      title: 'AI Chatbots & Virtual Assistants',
-      description: 'Deploy intelligent conversational AI that provides 24/7 customer support and handles complex queries with human-like interactions.',
-      features: [
-        'Natural language processing',
-        'Multi-channel support (web, mobile, social)',
-        'Integration with CRM and databases',
-        'Continuous learning and improvement'
-      ],
-      image: 'https://images.unsplash.com/photo-1757310998437-b2e8a7bd2e97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaSUyMGNoYXRib3QlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU4OTYwODQ0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-    },
-    {
-      icon: Users,
-      title: 'Marketing Automation',
-      description: 'Automate your marketing campaigns with AI-driven personalization, lead scoring, and customer journey optimization.',
-      features: [
-        'Email marketing automation',
-        'Lead scoring and nurturing',
-        'Personalized content delivery',
-        'Campaign performance analytics'
-      ],
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc1ODk4NjY2OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-    },
-    {
-      icon: TrendingUp,
-      title: 'Predictive Analytics',
-      description: 'Harness the power of machine learning to predict trends, forecast demand, and make data-driven business decisions.',
-      features: [
-        'Sales forecasting and demand planning',
-        'Customer behavior prediction',
-        'Risk assessment and mitigation',
-        'Real-time business intelligence'
-      ],
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc1ODk4NjY2OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-    },
-    {
-      icon: Workflow,
-      title: 'Workflow Integrations',
-      description: 'Connect your tools and systems with seamless integrations that enable smooth data flow and automated processes.',
-      features: [
-        'API integrations and middleware',
-        'Data synchronization across platforms',
-        'Custom connector development',
-        'Real-time monitoring and alerts'
-      ],
-      image: 'https://images.unsplash.com/photo-1758543102367-da8b00ddf4da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGF1dG9tYXRpb24lMjB3b3JrZmxvd3xlbnwxfHx8fDE3NTg5ODM0MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-    },
-    {
-      icon: Brain,
-      title: 'AI Consulting & Strategy',
-      description: 'Get expert guidance on AI implementation, strategy development, and digital transformation roadmaps.',
-      features: [
-        'AI readiness assessment',
-        'Custom AI strategy development',
-        'Technology stack recommendations',
-        'Change management and training'
-      ],
-      image: 'https://images.unsplash.com/photo-1697564264677-a90b9c1ddbcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwdGVjaG5vbG9neSUyMGFpJTIwYXV0b21hdGlvbnxlbnwxfHx8fDE3NTkwMjg5ODF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-    },
-  ]
+  {
+    icon: Zap,
+    title: 'Business Process Automation',
+    description: 'Streamline your operations with intelligent automation that handles repetitive tasks, data processing, approvals, and workflow orchestration.',
+    features: [
+      'Document processing & data extraction (OCR + NLP)',
+      'Automated reporting & dashboards',
+      'Approval routing / exception handling',
+      'System orchestration & scheduled tasks'
+    ],
+    image: '/images/business-process-automation.png'
+  },
+  {
+    icon: Bot,
+    title: 'AI Chatbots & Virtual Assistants',
+    description: 'Deploy conversational AI agents that provide 24/7 support, automate lead qualification, and reduce support load with human-level understanding.',
+    features: [
+      'Natural language understanding & intent detection',
+      'Multi-channel support (website, mobile, messaging apps)',
+      'CRM & database integration',
+      'Continuous learning and human handoff'
+    ],
+    image: '/images/chatbot.png'
+  },
+  {
+    icon: Users,
+    title: 'Marketing Automation & Content Generation',
+    description: 'Automate the creation, personalization, and distribution of marketing content, using AI to optimize engagement and convert leads.',
+    features: [
+      'AI-driven email/newsletter campaigns',
+      'Automated content & social publishing',
+      'Lead scoring & nurture sequences',
+      'Campaign analytics & A/B testing'
+    ],
+    image: '/images/marketing-automation.png'
+  },
+  {
+    icon: TrendingUp,
+    title: 'Predictive Analytics & Forecasting',
+    description: 'Leverage machine learning to forecast demand, detect churn, and make proactive business decisions using data patterns.',
+    features: [
+      'Sales forecasting & demand planning',
+      'Customer behavior & churn prediction',
+      'Anomaly detection & risk scoring',
+      'Real-time business intelligence & alerts'
+    ],
+    image: '/images/predictive-analytics.png'
+  },
+  {
+    icon: Workflow,
+    title: 'System & App Integrations',
+    description: 'Connect disparate tools, synchronize data, and build custom connectors so your tech stack works together smoothly and intelligently.',
+    features: [
+      'API integrations & middleware',
+      'Data sync & transformation between platforms',
+      'Custom connector / plugin development',
+      'Real-time monitoring, error handling & alerts'
+    ],
+    image: '/images/system-integrations.png'
+  },
+  {
+    icon: Brain,
+    title: 'AI Strategy & Implementation Consulting',
+    description: 'Get expert guidance to assess readiness, prioritize use cases, design roadmaps, and deploy scalable AI automation in your business.',
+    features: [
+      'AI readiness & gap assessment',
+      'Use-case discovery & prioritization',
+      'Architecture & tech stack design',
+      'Change management, training & adoption support'
+    ],
+    image: '/images/ai-strategy.png'
+  },
+  {
+    icon: Shield,
+    title: 'AI Monitoring, Maintenance & Governance',
+    description: 'Ensure your AI systems remain accurate, reliable, safe, and compliant over time via ongoing monitoring, auditing, and updates.',
+    features: [
+      'Model drift detection & retraining',
+      'Logging, audit trails & explainability',
+      'Bias mitigation & fairness checks',
+      'Security, compliance, and access control'
+    ],
+    image: '/images/ai-monitoring.png'
+  }
+];
+
 
   const processSteps = [
     {

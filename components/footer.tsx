@@ -112,11 +112,11 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Mail className="w-4 h-4" />
-                <span>{process.env.NEXT_PUBLIC_EMAIL}</span>
+                <span suppressHydrationWarning={true}>{process.env.NEXT_PUBLIC_CONTACT_EMAIL}</span>
               </div>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Phone className="w-4 h-4" />
-                <span>{process.env.NEXT_PUBLIC_PHONE_NUMBER}</span>
+                <span suppressHydrationWarning={true}>{process.env.NEXT_PUBLIC_CONTACT_PHONE}</span>
               </div>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <MapPin className="w-4 h-4" />
