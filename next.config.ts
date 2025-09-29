@@ -16,4 +16,10 @@ const withMDX = createMDX({
   },
 })
 
+module.exports = {
+  experimental: {
+    optimizePackageImports: ["lucide-react"], // y otras que uses
+  },
+};
+
 export default withMDX(nextConfig)

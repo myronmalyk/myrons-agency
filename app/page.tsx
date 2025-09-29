@@ -6,7 +6,8 @@ import { Button } from '../components/ui/button'
 import { Card, CardContent } from '../components/ui/card'
 import { Badge } from '../components/ui/badge'
 import { useRouter } from 'next/navigation'
-import { ReactNode } from 'react'
+import Image from 'next/image'
+
 
 export default function Homepage() {
   const router = useRouter()
@@ -261,10 +262,27 @@ export default function Homepage() {
                 </Button>
               </m.div>
 
-              <div className="hidden lg:block" />
+              {/* Imagen a la derecha */}
+              <m.div
+                initial={{ opacity: 0, x: 12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.28 }}
+                className="relative"
+              >
+                <Image
+                  src="/images/about-preview.png"
+                  alt="About Myron's Agency illustration"     
+                  width={700}
+                  height={500}
+                  priority
+                  className="w-full h-auto rounded-xl shadow-lg"
+                />
+              </m.div>
             </div>
           </div>
         </section>
+
 
         {/* TESTIMONIALS */}
         <section className="py-20">

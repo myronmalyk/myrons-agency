@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
-import { ImageWithFallback } from '@/components/figma/ImageWithFallback'
+import Image from 'next/image'
 
 export type PostMeta = {
   title: string
@@ -27,12 +27,10 @@ const categories = ['All', 'AI', 'Automation', 'Data', 'Growth'] as const
 type Category = typeof categories[number]
 
 export default function BlogListClient({ posts }: { posts: PostMeta[] }) {
-  // Estado para búsqueda, filtro y "load more"
   const [query, setQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState<Category>('All')
   const [visibleCount, setVisibleCount] = useState(6)
 
-  // Filtrado por categoría + búsqueda (en memoria)
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
     return posts.filter((p) => {
@@ -151,11 +149,16 @@ export default function BlogListClient({ posts }: { posts: PostMeta[] }) {
               {/* Imagen clicable */}
               <Link href={`/blog/${featuredPost.slug}`} className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-violet-500/20 rounded-3xl blur-3xl group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-all duration-500" />
-                <ImageWithFallback
-                  src={featuredPost.image}
-                  alt={featuredPost.title}
-                  className="relative rounded-3xl shadow-2xl w-full h-auto group-hover:shadow-3xl transition-shadow duration-500"
-                />
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl shadow-2xl group-hover:shadow-3xl transition-shadow duration-500">
+                  <Image
+                    src={featuredPost.image}
+                    alt={featuredPost.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                    priority
+                  />
+                </div>
               </Link>
 
               <div>
@@ -173,19 +176,16 @@ export default function BlogListClient({ posts }: { posts: PostMeta[] }) {
                   </div>
                 </div>
 
-                {/* Título clicable */}
                 <Link href={`/blog/${featuredPost.slug}`}>
                   <h3 className="text-3xl font-bold mb-4 hover:text-blue-500 transition-colors duration-300">
                     {featuredPost.title}
                   </h3>
                 </Link>
 
-                {/* SOLO excerpt en la lista */}
                 <p className="text-lg text-muted-foreground mb-6">
                   {featuredPost.excerpt}
                 </p>
 
-                {/* Botón Read More */}
                 <Link href={`/blog/${featuredPost.slug}`} className="inline-flex">
                   <Button className="group">
                     Read More
@@ -224,11 +224,15 @@ export default function BlogListClient({ posts }: { posts: PostMeta[] }) {
                 <Card className="h-full hover:shadow-xl transition-all duration-500 group overflow-hidden border-border/50 hover:border-blue-500/50">
                   {/* Imagen clicable */}
                   <Link href={`/blog/${post.slug}`} className="relative block overflow-hidden">
-                    <ImageWithFallback
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                    <div className="relative h-48 w-full">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
                     <div className="absolute top-4 left-4">
                       <Badge variant="outline" className="bg-background/80 backdrop-blur-sm text-blue-500 border-blue-500">
                         {post.category}
@@ -248,14 +252,12 @@ export default function BlogListClient({ posts }: { posts: PostMeta[] }) {
                       </div>
                     </div>
 
-                    {/* Título clicable */}
                     <Link href={`/blog/${post.slug}`}>
                       <h3 className="font-semibold text-lg mb-3 line-clamp-2 group-hover:text-blue-500 transition-colors duration-300">
                         {post.title}
                       </h3>
                     </Link>
 
-                    {/* SOLO excerpt */}
                     <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                       {post.excerpt}
                     </p>
@@ -266,7 +268,6 @@ export default function BlogListClient({ posts }: { posts: PostMeta[] }) {
                         <span>{post.author}</span>
                       </div>
 
-                      {/* Read More clicable */}
                       <Link href={`/blog/${post.slug}`} className="group text-sm inline-flex items-center">
                         Read More
                         <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform duration-200" />

@@ -5,7 +5,7 @@ import { ArrowRight, Bot, Zap, TrendingUp, Users, Workflow, Brain, Shield } from
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { ImageWithFallback } from '@/components/figma/ImageWithFallback'
+import Image from "next/image"
 
 interface ServicesProps {
   onPageChange: (page: 'contact') => void
@@ -13,92 +13,91 @@ interface ServicesProps {
 
 export default function Services({ onPageChange }: ServicesProps) {
   const services = [
-  {
-    icon: Zap,
-    title: 'Business Process Automation',
-    description: 'Streamline your operations with intelligent automation that handles repetitive tasks, data processing, approvals, and workflow orchestration.',
-    features: [
-      'Document processing & data extraction (OCR + NLP)',
-      'Automated reporting & dashboards',
-      'Approval routing / exception handling',
-      'System orchestration & scheduled tasks'
-    ],
-    image: '/images/business-process-automation.png'
-  },
-  {
-    icon: Bot,
-    title: 'AI Chatbots & Virtual Assistants',
-    description: 'Deploy conversational AI agents that provide 24/7 support, automate lead qualification, and reduce support load with human-level understanding.',
-    features: [
-      'Natural language understanding & intent detection',
-      'Multi-channel support (website, mobile, messaging apps)',
-      'CRM & database integration',
-      'Continuous learning and human handoff'
-    ],
-    image: '/images/chatbot.png'
-  },
-  {
-    icon: Users,
-    title: 'Marketing Automation & Content Generation',
-    description: 'Automate the creation, personalization, and distribution of marketing content, using AI to optimize engagement and convert leads.',
-    features: [
-      'AI-driven email/newsletter campaigns',
-      'Automated content & social publishing',
-      'Lead scoring & nurture sequences',
-      'Campaign analytics & A/B testing'
-    ],
-    image: '/images/marketing-automation.png'
-  },
-  {
-    icon: TrendingUp,
-    title: 'Predictive Analytics & Forecasting',
-    description: 'Leverage machine learning to forecast demand, detect churn, and make proactive business decisions using data patterns.',
-    features: [
-      'Sales forecasting & demand planning',
-      'Customer behavior & churn prediction',
-      'Anomaly detection & risk scoring',
-      'Real-time business intelligence & alerts'
-    ],
-    image: '/images/predictive-analytics.png'
-  },
-  {
-    icon: Workflow,
-    title: 'System & App Integrations',
-    description: 'Connect disparate tools, synchronize data, and build custom connectors so your tech stack works together smoothly and intelligently.',
-    features: [
-      'API integrations & middleware',
-      'Data sync & transformation between platforms',
-      'Custom connector / plugin development',
-      'Real-time monitoring, error handling & alerts'
-    ],
-    image: '/images/system-integrations.png'
-  },
-  {
-    icon: Brain,
-    title: 'AI Strategy & Implementation Consulting',
-    description: 'Get expert guidance to assess readiness, prioritize use cases, design roadmaps, and deploy scalable AI automation in your business.',
-    features: [
-      'AI readiness & gap assessment',
-      'Use-case discovery & prioritization',
-      'Architecture & tech stack design',
-      'Change management, training & adoption support'
-    ],
-    image: '/images/ai-strategy.png'
-  },
-  {
-    icon: Shield,
-    title: 'AI Monitoring, Maintenance & Governance',
-    description: 'Ensure your AI systems remain accurate, reliable, safe, and compliant over time via ongoing monitoring, auditing, and updates.',
-    features: [
-      'Model drift detection & retraining',
-      'Logging, audit trails & explainability',
-      'Bias mitigation & fairness checks',
-      'Security, compliance, and access control'
-    ],
-    image: '/images/ai-monitoring.png'
-  }
-];
-
+    {
+      icon: Zap,
+      title: 'Business Process Automation',
+      description: 'Streamline your operations with intelligent automation that handles repetitive tasks, data processing, approvals, and workflow orchestration.',
+      features: [
+        'Document processing & data extraction (OCR + NLP)',
+        'Automated reporting & dashboards',
+        'Approval routing / exception handling',
+        'System orchestration & scheduled tasks'
+      ],
+      image: '/images/business-process-automation.png'
+    },
+    {
+      icon: Bot,
+      title: 'AI Chatbots & Virtual Assistants',
+      description: 'Deploy conversational AI agents that provide 24/7 support, automate lead qualification, and reduce support load with human-level understanding.',
+      features: [
+        'Natural language understanding & intent detection',
+        'Multi-channel support (website, mobile, messaging apps)',
+        'CRM & database integration',
+        'Continuous learning and human handoff'
+      ],
+      image: '/images/chatbot.png'
+    },
+    {
+      icon: Users,
+      title: 'Marketing Automation & Content Generation',
+      description: 'Automate the creation, personalization, and distribution of marketing content, using AI to optimize engagement and convert leads.',
+      features: [
+        'AI-driven email/newsletter campaigns',
+        'Automated content & social publishing',
+        'Lead scoring & nurture sequences',
+        'Campaign analytics & A/B testing'
+      ],
+      image: '/images/marketing-automation.png'
+    },
+    {
+      icon: TrendingUp,
+      title: 'Predictive Analytics & Forecasting',
+      description: 'Leverage machine learning to forecast demand, detect churn, and make proactive business decisions using data patterns.',
+      features: [
+        'Sales forecasting & demand planning',
+        'Customer behavior & churn prediction',
+        'Anomaly detection & risk scoring',
+        'Real-time business intelligence & alerts'
+      ],
+      image: '/images/predictive-analytics.png'
+    },
+    {
+      icon: Workflow,
+      title: 'System & App Integrations',
+      description: 'Connect disparate tools, synchronize data, and build custom connectors so your tech stack works together smoothly and intelligently.',
+      features: [
+        'API integrations & middleware',
+        'Data sync & transformation between platforms',
+        'Custom connector / plugin development',
+        'Real-time monitoring, error handling & alerts'
+      ],
+      image: '/images/system-integrations.png'
+    },
+    {
+      icon: Brain,
+      title: 'AI Strategy & Implementation Consulting',
+      description: 'Get expert guidance to assess readiness, prioritize use cases, design roadmaps, and deploy scalable AI automation in your business.',
+      features: [
+        'AI readiness & gap assessment',
+        'Use-case discovery & prioritization',
+        'Architecture & tech stack design',
+        'Change management, training & adoption support'
+      ],
+      image: '/images/ai-strategy.png'
+    },
+    {
+      icon: Shield,
+      title: 'AI Monitoring, Maintenance & Governance',
+      description: 'Ensure your AI systems remain accurate, reliable, safe, and compliant over time via ongoing monitoring, auditing, and updates.',
+      features: [
+        'Model drift detection & retraining',
+        'Logging, audit trails & explainability',
+        'Bias mitigation & fairness checks',
+        'Security, compliance, and access control'
+      ],
+      image: '/images/ai-monitoring.png'
+    }
+  ];
 
   const processSteps = [
     {
@@ -209,9 +208,11 @@ export default function Services({ onPageChange }: ServicesProps) {
                     className="relative group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-violet-500/20 rounded-3xl blur-3xl group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-all duration-500" />
-                    <ImageWithFallback
+                    <Image
                       src={service.image}
                       alt={service.title}
+                      width={600}
+                      height={400}
                       className="relative rounded-3xl shadow-2xl w-full h-auto group-hover:shadow-3xl transition-shadow duration-500"
                     />
                   </motion.div>

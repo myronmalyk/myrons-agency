@@ -4,9 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon, Zap } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "./ui/button";
 import { useTheme } from "./theme-provider";
+import Image from "next/image";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,16 +31,20 @@ export default function Navigation() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
+          {/* Logo + Brand */}
           <motion.div
             className="flex cursor-pointer items-center gap-2"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-violet-500">
-                <Zap className="h-5 w-5 text-white" />
-              </div>
+              <Image
+                src="/logo.png"
+                alt="Myron's Agency Logo"
+                width={40} // un poco más grande
+                height={40}
+                priority
+              />
               <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-xl font-bold text-transparent">
                 Myron&apos;s Agency
               </span>
@@ -51,11 +56,18 @@ export default function Navigation() {
             {items.map((item) => {
               const active = pathname === item.href;
               return (
-                <motion.div key={item.href} whileHover={{ y: -2 }} whileTap={{ y: 0 }} className="relative">
+                <motion.div
+                  key={item.href}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ y: 0 }}
+                  className="relative"
+                >
                   <Link
                     href={item.href}
                     className={`relative px-3 py-2 transition-colors duration-200 ${
-                      active ? "text-primary" : "text-muted-foreground hover:text-primary"
+                      active
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-primary"
                     }`}
                   >
                     {item.label}
@@ -75,10 +87,18 @@ export default function Navigation() {
 
           {/* Theme toggle + Mobile trigger */}
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="relative overflow-hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="relative overflow-hidden"
+            >
               <motion.div
                 initial={false}
-                animate={{ rotate: theme === "dark" ? 0 : 180, scale: theme === "dark" ? 1 : 0 }}
+                animate={{
+                  rotate: theme === "dark" ? 0 : 180,
+                  scale: theme === "dark" ? 1 : 0,
+                }}
                 transition={{ duration: 0.3 }}
                 className="absolute"
               >
@@ -86,7 +106,10 @@ export default function Navigation() {
               </motion.div>
               <motion.div
                 initial={false}
-                animate={{ rotate: theme === "light" ? 0 : 180, scale: theme === "light" ? 1 : 0 }}
+                animate={{
+                  rotate: theme === "light" ? 0 : 180,
+                  scale: theme === "light" ? 1 : 0,
+                }}
                 transition={{ duration: 0.3 }}
                 className="absolute"
               >
@@ -94,7 +117,10 @@ export default function Navigation() {
               </motion.div>
             </Button>
 
-            <button className="p-2 md:hidden" onClick={() => setIsMobileMenuOpen((v) => !v)}>
+            <button
+              className="p-2 md:hidden"
+              onClick={() => setIsMobileMenuOpen((v) => !v)}
+            >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={isMobileMenuOpen ? "close" : "menu"}
@@ -103,7 +129,11 @@ export default function Navigation() {
                   exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                  {isMobileMenuOpen ? (
+                    <X className="h-6 w-6" />
+                  ) : (
+                    <Menu className="h-6 w-6" />
+                  )}
                 </motion.div>
               </AnimatePresence>
             </button>
@@ -135,7 +165,9 @@ export default function Navigation() {
                       href={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`block w-full rounded-lg px-4 py-2 text-left transition-colors duration-200 ${
-                        active ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:bg-accent/50 hover:text-primary"
+                        active
+                          ? "bg-accent text-accent-foreground"
+                          : "text-muted-foreground hover:bg-accent/50 hover:text-primary"
                       }`}
                     >
                       {item.label}

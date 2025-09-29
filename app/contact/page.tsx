@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
-import { ImageWithFallback } from '@/components/figma/ImageWithFallback'
+import Image from 'next/image'
 
 type FormValues = {
   name: string
@@ -30,7 +30,6 @@ export default function Contact() {
     const form = e.currentTarget
     const fd = new FormData(form)
 
-    // Tipamos cada campo de forma segura (FormData.get puede devolver string | File | null). :contentReference[oaicite:2]{index=2}
     const data: FormValues = {
       name: String(fd.get('name') ?? ''),
       email: String(fd.get('email') ?? ''),
@@ -58,7 +57,6 @@ export default function Contact() {
       setStatus("ok")
       form.reset()
     } catch (err: unknown) {
-      // Manejo de errores sin usar `any`
       const msg = err instanceof Error ? err.message : "Something went wrong"
       setStatus("error")
       setErrorMsg(msg)
@@ -266,11 +264,17 @@ export default function Contact() {
               {/* AI Illustration */}
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-violet-500/20 rounded-3xl blur-3xl group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-all duration-500" />
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1697564264677-a90b9c1ddbcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwdGVjaG5vbG9neSUyMGFpJTIwYXV0b21hdGlvbnxlbnwxfHx8fDE3NTkwMjg5ODF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="AI Automation Consultation"
-                  className="relative rounded-3xl shadow-2xl w-full h-auto"
-                />
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                  <div className="relative aspect-[16/9] w-full">
+                    <Image
+                      src="/images/about-preview.png"
+                      alt="AI Automation Consultation"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
               </div>
 
               {/* Response Time */}
