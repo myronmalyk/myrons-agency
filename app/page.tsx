@@ -71,7 +71,7 @@ export default function Homepage() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* HERO — 90% viewport, minimal, centrado */}
-      <section className="relative flex items-center justify-center min-h-[90svh] md:min-h-[90vh]">
+      <section className="relative flex items-center justify-center min-h-[95svh] md:min-h-[95vh]">
         {/* Fondos sutiles */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-violet-500/5 to-cyan-500/10" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-500/20 via-transparent to-transparent" />
