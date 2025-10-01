@@ -77,6 +77,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="1aXVDxQ384rh5KerK" data-version="062024"></script>
+      </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         <Providers>
           <AnimatedBackground />
