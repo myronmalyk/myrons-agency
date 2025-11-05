@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
+import { ConsultationCard } from '@/components/calendly'
 
 type FormValues = {
   name: string
@@ -243,7 +244,7 @@ export default function Contact() {
               className="space-y-8"
             >
               {/* Quick Contact */}
-              <Card>
+              {/*<Card>
                 <CardHeader>
                   <CardTitle className="text-xl flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-blue-500" />
@@ -259,7 +260,8 @@ export default function Contact() {
                     <Calendar className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
                   </Button>
                 </CardContent>
-              </Card>
+              </Card>*/}
+              <ConsultationCard/>
 
               {/* AI Illustration */}
               <div className="relative group">

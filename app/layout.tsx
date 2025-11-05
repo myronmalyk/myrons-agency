@@ -75,10 +75,30 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="1aXVDxQ384rh5KerK" data-version="062024"></script>
+        {/* Google Analytics Script */}
+        {gaId && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}');
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         <Providers>
