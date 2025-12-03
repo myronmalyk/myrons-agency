@@ -5,6 +5,7 @@ import { ArrowRight, Bot, Zap, TrendingUp, Users, Workflow, Brain, Shield } from
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { useRouter } from 'next/navigation'
 import Image from "next/image"
 
 interface ServicesProps {
@@ -12,88 +13,103 @@ interface ServicesProps {
 }
 
 export default function Services({ onPageChange }: ServicesProps) {
+
+  const router = useRouter();
+
   const services = [
     {
-      icon: Zap,
-      title: 'Business Process Automation',
-      description: 'Streamline your operations with intelligent automation that handles repetitive tasks, data processing, approvals, and workflow orchestration.',
-      features: [
-        'Document processing & data extraction (OCR + NLP)',
-        'Automated reporting & dashboards',
-        'Approval routing / exception handling',
-        'System orchestration & scheduled tasks'
-      ],
-      image: '/images/business-process-automation.png'
-    },
-    {
       icon: Bot,
-      title: 'AI Chatbots & Virtual Assistants',
-      description: 'Deploy conversational AI agents that provide 24/7 support, automate lead qualification, and reduce support load with human-level understanding.',
+      title: 'Virtual Concierge & Chatbots',
+      description: '24/7 multilingual conversational assistant across web chat, WhatsApp, SMS and in-room devices — handles booking modifications, pre-arrival questions, local recommendations, simple service requests, and triages escalations to staff.',
       features: [
-        'Natural language understanding & intent detection',
-        'Multi-channel support (website, mobile, messaging apps)',
-        'CRM & database integration',
-        'Continuous learning and human handoff'
+        'Multichannel support: web chat, WhatsApp, SMS, in-room devices',
+        'Natural language understanding & context retention',
+        'Personalized recommendations & upsells',
+        'Seamless escalation to human agents'
       ],
       image: '/images/chatbot.png'
     },
     {
-      icon: Users,
-      title: 'Marketing Automation & Content Generation',
-      description: 'Automate the creation, personalization, and distribution of marketing content, using AI to optimize engagement and convert leads.',
+      icon: Zap,
+      title: 'Dynamic Pricing & Revenue Management',
+      description: 'Auto-adjust room rates (or menu promotions) in near real-time using demand, competitor rates, events calendar, lead times and historical occupancy. Supports rules & override by revenue manager.',
       features: [
-        'AI-driven email/newsletter campaigns',
-        'Automated content & social publishing',
-        'Lead scoring & nurture sequences',
-        'Campaign analytics & A/B testing'
+        'Real-time market & competitor rate analysis',
+        'Demand forecasting using historical & external data',
+        'Customizable pricing rules & constraints',
+        'Integration with PMS/CRS for automated rate updates'
+      ],
+      image: '/images/business-process-automation.png'
+    },
+    {
+      icon: Users,
+      title: 'Intelligent Staff Scheduling & Task Automation',
+      description: 'Forecast demand by day/slot, then automatically generate optimized rosters to match expected demand, employee preferences, skill requirements, and labor regulations. Also creates shortage alerts, shift swap workflows and on-call triggers.',
+      features: [
+        'Demand forecasting by day/shift',
+        'Automated shift scheduling & optimization',
+        'Employee preference & availability management',
+        'Labor law compliance & overtime minimization'
       ],
       image: '/images/marketing-automation.png'
     },
     {
       icon: TrendingUp,
-      title: 'Predictive Analytics & Forecasting',
-      description: 'Leverage machine learning to forecast demand, detect churn, and make proactive business decisions using data patterns.',
+      title: 'Food Waste Optimization',
+      description: 'Forecast item-level demand by day/meal/time, auto-generate purchase orders and par levels, suggest menu item preparation quantities, and identify slow SKU items for promotions.',
       features: [
-        'Sales forecasting & demand planning',
-        'Customer behavior & churn prediction',
-        'Anomaly detection & risk scoring',
-        'Real-time business intelligence & alerts'
+        'Item-level demand forecasting',
+        'Automated purchase order generation',
+        'Menu item preparation recommendations',
+        'Slow-moving SKU identification & promotion suggestions'
       ],
       image: '/images/predictive-analytics.png'
     },
     {
       icon: Workflow,
-      title: 'System & App Integrations',
-      description: 'Connect disparate tools, synchronize data, and build custom connectors so your tech stack works together smoothly and intelligently.',
+      title: 'Housekeeping & Room Turn Automation',
+      description: 'Predicts check-outs/no-shown prioritizes room cleaning based on forecasted arrivals, auto-assigns tasks to housekeeping with optimized routes and mobile confirmations.',
       features: [
-        'API integrations & middleware',
-        'Data sync & transformation between platforms',
-        'Custom connector / plugin development',
-        'Real-time monitoring, error handling & alerts'
+        'Check-out & no-show prediction',
+        'Optimized room cleaning prioritization',
+        'Automated task assignment & routing',
+        'Mobile task confirmation & tracking'
       ],
       image: '/images/system-integrations.png'
     },
     {
       icon: Brain,
-      title: 'AI Strategy & Implementation Consulting',
-      description: 'Get expert guidance to assess readiness, prioritize use cases, design roadmaps, and deploy scalable AI automation in your business.',
+      title: 'Reputation Management & Sentiment Analysis',
+      description: 'Aggregate reviews and social mentions, automatically categorize sentiment and topics (cleanliness, noise, staff), surface high-priority items for action, and draft suggested responses.',
       features: [
-        'AI readiness & gap assessment',
-        'Use-case discovery & prioritization',
-        'Architecture & tech stack design',
-        'Change management, training & adoption support'
+        'Review & social mention aggregation',
+        'Automated sentiment & topic categorization',
+        'High-priority issue identification',
+        'Suggested response generation'
       ],
       image: '/images/ai-strategy.png'
     },
     {
       icon: Shield,
-      title: 'AI Monitoring, Maintenance & Governance',
-      description: 'Ensure your AI systems remain accurate, reliable, safe, and compliant over time via ongoing monitoring, auditing, and updates.',
+      title: 'Predictive Maintenance & Energy Optimization',
+      description: 'Use sensor/maintenance logs to predict equipment failure, schedule proactive maintenance, and optimize HVAC/lighting based on occupancy forecasts.',
       features: [
-        'Model drift detection & retraining',
-        'Logging, audit trails & explainability',
-        'Bias mitigation & fairness checks',
-        'Security, compliance, and access control'
+        'Equipment failure prediction',
+        'Proactive maintenance scheduling',
+        'Occupancy-based HVAC & lighting optimization',
+        'Energy consumption monitoring & reporting'
+      ],
+      image: '/images/ai-monitoring.png'
+    },
+    {
+      icon: Shield,
+      title: 'Contactless Check-In / ID Verification & Fraud Detection',
+      description: 'Contactless mobile check-in/out, e-ID verification, secure payment capture, automated KYD/fraud scoring.',
+      features: [
+        'Contactless mobile check-in/out',
+        'E-ID verification',
+        'Secure payment capture',
+        'Automated KYD/fraud scoring'
       ],
       image: '/images/ai-monitoring.png'
     }
@@ -293,7 +309,7 @@ export default function Services({ onPageChange }: ServicesProps) {
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
-                onClick={() => onPageChange('contact')}
+                onClick={() => router.push('/contact')}
               >
                 Schedule a Consultation
                 <ArrowRight className="ml-2 h-4 w-4" />
