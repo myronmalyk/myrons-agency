@@ -13,16 +13,16 @@ export default function Footer() {
 
   const footerLinks = {
     Services: [
-      'Business Automation',
-      'AI Chatbots',
-      'Marketing Automation',
-      'Predictive Analytics',
+      'Hospitality Automation',
+      'AI Chatbots for Reservations',
+      'Restaurant Marketing Automation',
+      'Demand Forecasting & Analytics',
     ],
     Company: [
-      'About Us',
-      'Our Team',
-      'Careers',
+      'About',
+      'How It Works',
       'Contact',
+      'Blog',
     ],
     Legal: [
       'Privacy Policy',
@@ -52,7 +52,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-muted-foreground mb-4 max-w-sm">
-              Automating your business with cutting-edge AI solutions. Transform your workflows and scale your operations with intelligent automation.
+              AI automation agency specialized in hospitality, accommodation, and food service businesses. We design practical automation systems that streamline operations, reduce manual work, and improve efficiency.  
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -110,17 +110,17 @@ export default function Footer() {
           >
             <h3 className="font-semibold mb-4">Contact Info</h3>
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-muted-foreground">
+              <div className="flex items-center gap-3 text-muted-foreground w-145">
                 <Mail className="w-4 h-4" />
                 <span suppressHydrationWarning={true}>{process.env.NEXT_PUBLIC_CONTACT_EMAIL}</span>
               </div>
-              <div className="flex items-center gap-3 text-muted-foreground">
+              <div className="flex items-center gap-3 text-muted-foreground w-145">
                 <Phone className="w-4 h-4" />
                 <span suppressHydrationWarning={true}>{process.env.NEXT_PUBLIC_CONTACT_PHONE}</span>
               </div>
-              <div className="flex items-center gap-3 text-muted-foreground">
+              <div className="flex items-center gap-3 text-muted-foreground w-145">
                 <MapPin className="w-4 h-4" />
-                <span>Vancouver, BC</span>
+                <span>Vancouver, BC — Serving hospitality businesses across Canada & the US</span>
               </div>
             </div>
           </motion.div>

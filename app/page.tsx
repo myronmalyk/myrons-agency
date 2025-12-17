@@ -1,7 +1,7 @@
 'use client'
 
 import { LazyMotion, domAnimation, m } from 'framer-motion'
-import { ArrowRight, Bot, Zap, TrendingUp, Users, Star, CheckCircle } from 'lucide-react'
+import { ArrowRight, Bot, Zap, TrendingUp, Users, Star, CheckCircle, Bold } from 'lucide-react'
 import { Button } from '../components/ui/button'
 import { Card, CardContent } from '../components/ui/card'
 import { Badge } from '../components/ui/badge'
@@ -15,50 +15,50 @@ export default function Homepage() {
   const services = [
     {
       icon: Bot,
-      title: 'AI Chatbots',
+      title: 'AI Chatbots for Reservations & Support',
       description:
-        'Intelligent conversational AI that handles customer inquiries 24/7, improving response times and customer satisfaction.',
+        'AI chatbots that handle reservations, answer guest questions 24/7, and reduce missed bookings for restaurants and hospitality businesses.',
     },
     {
       icon: Zap,
-      title: 'Process Automation',
+      title: 'Operational Automation for Hospitality',
       description:
-        'Streamline repetitive tasks and workflows with smart automation that saves time and reduces human error.',
+        'Automate daily operations like booking confirmations, staff workflows, and internal processes to reduce errors and save time.',
     },
     {
       icon: TrendingUp,
-      title: 'Predictive Analytics',
+      title: 'AI Marketing Automation for Restaurants',
       description:
-        'Harness the power of data to predict trends, optimize operations, and make informed business decisions.',
+        'AI-driven marketing automation that follows up with guests, increases repeat visits, and improves customer retention.',
     },
     {
       icon: Users,
-      title: 'Marketing Automation',
+      title: 'Predictive Analytics & Demand Forecasting',
       description:
-        'Automate your marketing campaigns with AI-driven personalization and lead nurturing systems.',
+        'Predict busy periods, optimize staffing, and make data-driven decisions using AI-powered analytics for hospitality businesses.',
     },
   ]
 
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      role: 'CEO, TechStart Inc.',
+      name: 'Restaurant Owner',
+      role: 'Casual Dining',
       content:
-        "Myron's Agency transformed our customer service with their AI chatbot. Our response time improved by 90%.",
+        "Before automation, we missed inquiries during peak hours. An AI chatbot handling reservations and FAQs would significantly reduce missed bookings.",
       rating: 5,
     },
     {
-      name: 'Michael Chen',
-      role: 'Operations Director, ScaleUp Co.',
+      name: 'Operations Manager',
+      role: 'Food Service Business',
       content:
-        'The process automation they implemented saved us 15 hours per week. Incredible ROI and seamless integration.',
+        'Manual confirmations and staff coordination slow us down. Automating these workflows would save hours every week.',
       rating: 5,
     },
     {
-      name: 'Emily Rodriguez',
-      role: 'Marketing Manager, GrowthLab',
+      name: 'Marketing Lead',
+      role: 'Food Service Business',
       content:
-        'Their marketing automation increased our lead conversion by 60%. The team is professional and results-driven.',
+        'Following up with guests consistently is hard. Marketing automation makes retention and repeat visits much easier.',
       rating: 5,
     },
   ]
@@ -89,7 +89,7 @@ export default function Homepage() {
                 className="mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm/6 backdrop-blur"
               >
                 <span className="inline-block h-2 w-2 rounded-full bg-green-400" />
-                Trusted by 500+ Companies
+                Business Automation Agency <strong>Powered by AI</strong>
               </Badge>
 
               <h1 className="mx-auto max-w-4xl text-4xl font-extrabold tracking-tight md:text-6xl leading-[1.05]">
@@ -100,8 +100,7 @@ export default function Homepage() {
               </h1>
 
               <p className="mx-auto mt-6 max-w-3xl text-balance text-lg md:text-xl text-muted-foreground">
-                Transform your business with cutting-edge AI. We design and deploy custom solutions that automate
-                processes, enhance decision-making, and unlock new revenue streams.
+                We design custom AI automation systems that streamline operations, <strong>reduce costs</strong>, and help SMBs <strong>scale faster</strong>.
               </p>
 
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
@@ -110,7 +109,7 @@ export default function Homepage() {
                   className="h-12 px-6 text-base bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
                   onClick={() => router.push('/contact')}
                 >
-                  Start Your AI Journey
+                  Book a Free AI Audit
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
 
@@ -118,9 +117,9 @@ export default function Homepage() {
                   variant="outline"
                   size="lg"
                   className="h-12 px-6 text-base"
-                  onClick={() => router.push('/case-studies')}
+                  onClick={() => router.push('/contact')}
                 >
-                  View Case Studies
+                  See How It Works
                 </Button>
               </div>
             </m.div>
@@ -133,9 +132,9 @@ export default function Homepage() {
               className="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3"
             >
               {[
-                { value: '500+', label: 'Projects Delivered' },
-                { value: '98%', label: 'Client Satisfaction' },
-                { value: '250M', label: 'Data Points Processed' },
+                { value: '🧩', label: 'Custom AI Automation' },
+                { value: '👥', label: 'Built for SMBs' },
+                { value: '🔗', label: 'End-to-End Automation' },
               ].map((s) => (
                 <Card
                   key={s.label}
@@ -165,7 +164,7 @@ export default function Homepage() {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our AI-Powered Solutions</h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Discover how our cutting-edge AI automation services can transform your business operations
+                Discover how our AI automation services help small and growing businesses streamline operations, reduce costs, and scale efficiently.
               </p>
             </m.div>
 
@@ -224,24 +223,26 @@ export default function Homepage() {
                 transition={{ duration: 0.28 }}
               >
                 <Badge variant="secondary" className="mb-4">
-                  About Myron&apos;s Agency
+                  Hospitality AI Automation Specialists
                 </Badge>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  We Are Building the Future of{' '}
+                  About{' '}
                   <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
-                    Business Automation
+                    Myron’s Agency
                   </span>
                 </h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Founded in 2022, Myron&apos;s Agency helps businesses transform their operations through intelligent
-                  automation solutions that drive efficiency, reduce costs, and accelerate growth.
+                <h3>AI Automation for Hospitality & Food Service Businesses</h3>
+                <p className="text-lg text-muted-foreground mb-6 mt-2">
+                  Myron’s Agency helps restaurants, hotels, and hospitality businesses streamline operations using custom AI automation.
+
+We build practical, tailored AI systems that improve reservations, customer communication, internal workflows, and marketing — reducing manual work and increasing efficiency.  
                 </p>
                 <div className="space-y-3 mb-8">
                   {[
-                    'Expert team of AI specialists and automation engineers',
-                    'Proven track record with 500+ successful implementations',
-                    'Custom solutions tailored to your business needs',
-                    '24/7 support and continuous optimization',
+                    'Custom AI automation systems built specifically for hospitality workflows',
+                    'Focused on restaurants, accommodation & food service businesses',
+                    'Automation for reservations, operations, marketing & analytics',
+                    'Practical, scalable solutions — no unnecessary complexity',
                   ].map((point, idx) => (
                     <m.div
                       key={point}
@@ -256,8 +257,8 @@ export default function Homepage() {
                     </m.div>
                   ))}
                 </div>
-                <Button size="lg" className="group h-12 px-6 text-base" onClick={() => router.push('/about')}>
-                  Learn More About Us
+                <Button size="lg" className="group h-12 px-6 text-base" onClick={() => router.push('/contact')}>
+                  Book a Free AI Audit
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </m.div>
@@ -272,11 +273,11 @@ export default function Homepage() {
               >
                 <Image
                   src="/images/about-preview.png"
-                  alt="About Myron's Agency illustration"     
+                  alt="About Myron's Agency illustration"
                   width={700}
                   height={500}
                   priority
-                  className="w-full h-auto rounded-xl shadow-lg"
+                  className="w-auto h-full rounded-xl shadow-lg"
                 />
               </m.div>
             </div>
@@ -294,9 +295,9 @@ export default function Homepage() {
               transition={{ duration: 0.25 }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Real Scenarios from Hospitality Automation</h2>
               <p className="text-xl text-muted-foreground">
-                Don&apos;t just take our word for it — hear from businesses we&apos;ve transformed
+                Examples of common results hospitality businesses aim to achieve with AI automation
               </p>
             </m.div>
 
@@ -340,8 +341,7 @@ export default function Homepage() {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Automate Your Business?</h2>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Join hundreds of businesses that have already transformed their operations with our AI automation
-                solutions. Let&apos;s discuss how we can help you achieve your goals.
+                If you&apos;re losing time to manual processes, missed inquiries, or inconsistent follow-ups, we can help. Book a free AI audit and get a clear automation plan tailored to your operations.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button

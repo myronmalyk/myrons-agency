@@ -11,59 +11,73 @@ import Image from "next/image";
 export default function About() {
   const router = useRouter();
 
+  const services = [
+    {
+      title: 'AI Chatbots for Reservations & Guest Support',
+      description: 'AI chatbots that handle guest inquiries, manage reservations, and confirm bookings automatically — helping hospitality businesses respond faster and never miss an opportunity, even during peak hours.',
+      features: [
+        'Answering common guest questions instantly (hours, menu, availability, policies)',
+        'Handling reservation requests and confirmations automatically',
+        'Responding to website chat, Google Business messages, and social DMs',
+        'Reducing missed calls and messages during busy service hours'
+      ],
+      image: '/images/chatbot.png'
+    }
+  ];
+
   // const teamMembers = [...]; // (sigue igual; si lo reactivas, usa <Image /> también)
 
   const milestones = [
     {
-      year: "2022",
-      title: "Founded Myron's Agency",
+      year: "Step 1",
+      title: "Discovery (15–20 min)",
       description:
-        "Started with a vision to democratize AI automation for businesses of all sizes",
+        "Understand your workflow and bottlenecks",
     },
     {
-      year: "2023-2024",
-      title: "First 100 Clients",
+      year: "Step 2",
+      title: "Opportunities",
       description:
-        "Reached our first major milestone helping businesses automate critical processes",
+        "Identify the best automations to implement first",
     },
     {
-      year: "2025",
-      title: "Series A Funding",
+      year: "Step 3",
+      title: "Custom plan",
       description:
-        "Secured funding to expand our AI capabilities and team (Future Goal)",
+        "Clear scope, timeline, and next steps",
     },
     {
-      year: "2026",
-      title: "Global Expansion",
+      year: "Step 4",
+      title: "Build",
       description:
-        "Planning to serve businesses worldwide with localized AI solutions (Future Goal)",
+        "Implementation + optimization based on real usage",
     },
   ];
 
   const values = [
     {
       icon: Target,
-      title: "Innovation First",
+      title: "Practical first",
       description:
-        "We stay at the cutting edge of AI technology to deliver breakthrough solutions for our clients.",
+        "Solve the highest-impact bottlenecks before anything advanced.",
     },
     {
       icon: Users,
-      title: "Client-Centric",
+      title: "Built for hospitality",
       description:
-        "Every solution we build is tailored to our clients' unique needs and business objectives.",
+        "Designed for service hours, peak periods, and real staff workflows.",
     },
     {
       icon: Trophy,
-      title: "Excellence",
+      title: "Simple + scalable",
       description:
-        "We maintain the highest standards of quality in everything we do, from code to customer service.",
+        "Clear systems that can grow with your business.",
     },
     {
       icon: Rocket,
-      title: "Growth Mindset",
+      title: "Measured improvements",
       description:
-        "We continuously learn, adapt, and evolve to help our clients achieve sustainable growth.",
+        "We track outcomes like response time, missed inquiries, and workload reduction.",
     },
   ];
 
@@ -90,9 +104,7 @@ export default function About() {
               </span>
             </h1>
             <p className="mx-auto mb-8 max-w-3xl text-xl text-muted-foreground">
-              A team of AI specialists, automation engineers, and business
-              strategists dedicated to transforming how businesses operate
-              through intelligent automation.
+              We help hospitality, accommodation, and food service businesses streamline operations with practical AI automation — focused on real workflows, not hype.
             </p>
           </motion.div>
         </div>
@@ -107,34 +119,32 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="space-y-8">
+              <div className="space-y-8 ml-10">
                 <div>
                   <div className="mb-4 flex items-center gap-3">
                     <Target className="h-8 w-8 text-blue-500" />
-                    <h2 className="text-3xl font-bold">Our Mission</h2>
+                    <h2 className="text-3xl font-bold">What we do</h2>
                   </div>
                   <p className="text-lg text-muted-foreground">
-                    To democratize AI automation and make cutting-edge
-                    technology accessible to businesses of all sizes. We believe
-                    every company should have the power to automate repetitive
-                    tasks, gain actionable insights from their data, and focus
-                    on what matters most - growing their business.
+                    Myron’s Agency is a specialized AI automation agency for hospitality. We build systems that help teams respond faster, reduce manual admin work, and run smoother daily operations — from reservations and guest support to internal workflows and marketing automation.
                   </p>
+                  <h4 className="font-semibold mb-3">Typical Use Cases:</h4>
+
+
+
+                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full" />
+                  <span className="text-muted-foreground">Reservations & guest support automation</span>
+                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full" />
+                  <span className="text-muted-foreground">Operational workflow automation</span>
+                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full" />
+                  <span className="text-muted-foreground">Marketing automation & retention</span>
+                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full" />
+                  <span className="text-muted-foreground">Demand forecasting & analytics</span>
+
+
                 </div>
 
-                <div>
-                  <div className="mb-4 flex items-center gap-3">
-                    <Eye className="h-8 w-8 text-violet-500" />
-                    <h2 className="text-3xl font-bold">Our Vision</h2>
-                  </div>
-                  <p className="text-lg text-muted-foreground">
-                    To create a world where AI automation empowers every
-                    business to reach its full potential. We envision a future
-                    where intelligent systems handle routine operations,
-                    allowing human creativity and strategic thinking to drive
-                    innovation and growth.
-                  </p>
-                </div>
+                
               </div>
             </motion.div>
 
@@ -150,7 +160,7 @@ export default function About() {
               <div className="relative w-full overflow-hidden rounded-3xl shadow-2xl">
                 <div className="relative aspect-[16/9] w-full">
                   <Image
-                    src="/images/about-preview.png"
+                    src="/images/about_page.png"
                     alt="AI Technology Vision"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -173,10 +183,9 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="mb-16 text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Our Values</h2>
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Our approach</h2>
             <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
-              The principles that guide everything we do and every solution we
-              create
+              Hospitality businesses move fast. That’s why we build lightweight, reliable automation that fits your current tools and processes — and improves over time.
             </p>
           </motion.div>
 
@@ -216,11 +225,8 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="mb-16 text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Our Journey</h2>
-            <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
-              From startup to industry leader - our milestones and future
-              aspirations
-            </p>
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">How the Free AI Audit Works</h2>
+            
           </motion.div>
 
           <div className="relative">
@@ -234,20 +240,18 @@ export default function About() {
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className={`relative flex items-center ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
+                  className={`relative flex items-center ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                    }`}
                 >
                   {/* Timeline dot */}
                   <div className="absolute left-8 z-10 h-4 w-4 -translate-x-2 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 md:left-1/2 md:-translate-x-2" />
 
                   {/* Content */}
                   <div
-                    className={`ml-16 w-full md:ml-0 md:w-5/12 ${
-                      index % 2 === 0
-                        ? "md:mr-auto md:pr-8"
-                        : "md:ml-auto md:pl-8"
-                    }`}
+                    className={`ml-16 w-full md:ml-0 md:w-5/12 ${index % 2 === 0
+                      ? "md:mr-auto md:pr-8"
+                      : "md:ml-auto md:pl-8"
+                      }`}
                   >
                     <Card className="transition-all duration-300 hover:shadow-lg">
                       <CardContent className="p-6">
@@ -299,11 +303,11 @@ export default function About() {
                 className="bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
                 onClick={() => router.push("/contact")}
               >
-                Get in Touch
+                Book a Free AI Audit
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg">
-                View Open Positions
+              <Button variant="outline" size="lg" onClick={() => router.push("/contact")}>
+                See Example Automations
               </Button>
             </div>
           </motion.div>

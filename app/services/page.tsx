@@ -19,99 +19,65 @@ export default function Services({ onPageChange }: ServicesProps) {
   const services = [
     {
       icon: Bot,
-      title: 'Virtual Concierge & Chatbots',
-      description: '24/7 multilingual conversational assistant across web chat, WhatsApp, SMS and in-room devices — handles booking modifications, pre-arrival questions, local recommendations, simple service requests, and triages escalations to staff.',
+      title: 'AI Chatbots for Reservations & Guest Support',
+      description: 'AI chatbots that handle guest inquiries, manage reservations, and confirm bookings automatically — helping hospitality businesses respond faster and never miss an opportunity, even during peak hours.',
       features: [
-        'Multichannel support: web chat, WhatsApp, SMS, in-room devices',
-        'Natural language understanding & context retention',
-        'Personalized recommendations & upsells',
-        'Seamless escalation to human agents'
+        'Answering common guest questions instantly (hours, menu, availability, policies)',
+        'Handling reservation requests and confirmations automatically',
+        'Responding to website chat, Google Business messages, and social DMs',
+        'Reducing missed calls and messages during busy service hours'
       ],
       image: '/images/chatbot.png'
     },
     {
       icon: Zap,
-      title: 'Dynamic Pricing & Revenue Management',
-      description: 'Auto-adjust room rates (or menu promotions) in near real-time using demand, competitor rates, events calendar, lead times and historical occupancy. Supports rules & override by revenue manager.',
+      title: 'Operational Automation for Hospitality',
+      description: 'Automate repetitive operational tasks and internal workflows to reduce manual work, minimize errors, and keep daily hospitality operations running smoothly.',
       features: [
-        'Real-time market & competitor rate analysis',
-        'Demand forecasting using historical & external data',
-        'Customizable pricing rules & constraints',
-        'Integration with PMS/CRS for automated rate updates'
+        'Automated booking confirmations and internal notifications',
+        'Staff task assignment and workflow coordination',
+        'Automated checklists for daily operations and shifts',
+        'Internal process automation between tools and systems',
+        'Reducing manual admin work across front-of-house and back-office operations'
       ],
       image: '/images/business-process-automation.png'
     },
     {
       icon: Users,
-      title: 'Intelligent Staff Scheduling & Task Automation',
-      description: 'Forecast demand by day/slot, then automatically generate optimized rosters to match expected demand, employee preferences, skill requirements, and labor regulations. Also creates shortage alerts, shift swap workflows and on-call triggers.',
+      title: 'Restaurant Marketing Automation & Retention',
+      description: 'AI-powered marketing automation that helps restaurants and hospitality businesses follow up with guests, increase repeat visits, and maintain consistent customer communication without manual effort.',
       features: [
-        'Demand forecasting by day/shift',
-        'Automated shift scheduling & optimization',
-        'Employee preference & availability management',
-        'Labor law compliance & overtime minimization'
+        'Automated follow-ups after visits or reservations',
+        'Email and SMS campaigns for promotions and special events',
+        'Guest segmentation based on visit behavior',
+        'Review request automation after dining or stays'
       ],
       image: '/images/marketing-automation.png'
     },
     {
       icon: TrendingUp,
-      title: 'Food Waste Optimization',
-      description: 'Forecast item-level demand by day/meal/time, auto-generate purchase orders and par levels, suggest menu item preparation quantities, and identify slow SKU items for promotions.',
+      title: 'Demand Forecasting & Staffing Optimization',
+      description: 'AI-driven demand forecasting that helps hospitality businesses anticipate busy periods, optimize staffing levels, and make smarter operational decisions.',
       features: [
-        'Item-level demand forecasting',
-        'Automated purchase order generation',
-        'Menu item preparation recommendations',
-        'Slow-moving SKU identification & promotion suggestions'
+        'Forecasting demand by day, shift, or service period',
+        'Staffing recommendations based on expected demand',
+        'Identifying peak and low-traffic periods',
+        'Supporting better scheduling and labor planning',
+        'Reducing understaffing and overstaffing issues'
       ],
       image: '/images/predictive-analytics.png'
     },
     {
       icon: Workflow,
-      title: 'Housekeeping & Room Turn Automation',
-      description: 'Predicts check-outs/no-shown prioritizes room cleaning based on forecasted arrivals, auto-assigns tasks to housekeeping with optimized routes and mobile confirmations.',
+      title: 'Reputation Management & Review Automation',
+      description: 'Automate review collection and reputation management to improve online visibility, build trust with potential guests, and maintain a strong brand presence across review platforms.',
       features: [
-        'Check-out & no-show prediction',
-        'Optimized room cleaning prioritization',
-        'Automated task assignment & routing',
-        'Mobile task confirmation & tracking'
+        'Automated review requests after visits or stays',
+        'Centralized monitoring of reviews across platforms',
+        'Sentiment tracking and feedback insights',
+        'Alerts for negative reviews that need quick attention'
       ],
       image: '/images/system-integrations.png'
-    },
-    {
-      icon: Brain,
-      title: 'Reputation Management & Sentiment Analysis',
-      description: 'Aggregate reviews and social mentions, automatically categorize sentiment and topics (cleanliness, noise, staff), surface high-priority items for action, and draft suggested responses.',
-      features: [
-        'Review & social mention aggregation',
-        'Automated sentiment & topic categorization',
-        'High-priority issue identification',
-        'Suggested response generation'
-      ],
-      image: '/images/ai-strategy.png'
-    },
-    {
-      icon: Shield,
-      title: 'Predictive Maintenance & Energy Optimization',
-      description: 'Use sensor/maintenance logs to predict equipment failure, schedule proactive maintenance, and optimize HVAC/lighting based on occupancy forecasts.',
-      features: [
-        'Equipment failure prediction',
-        'Proactive maintenance scheduling',
-        'Occupancy-based HVAC & lighting optimization',
-        'Energy consumption monitoring & reporting'
-      ],
-      image: '/images/ai-monitoring.png'
-    },
-    {
-      icon: Shield,
-      title: 'Contactless Check-In / ID Verification & Fraud Detection',
-      description: 'Contactless mobile check-in/out, e-ID verification, secure payment capture, automated KYD/fraud scoring.',
-      features: [
-        'Contactless mobile check-in/out',
-        'E-ID verification',
-        'Secure payment capture',
-        'Automated KYD/fraud scoring'
-      ],
-      image: '/images/ai-monitoring.png'
     }
   ];
 
@@ -199,7 +165,7 @@ export default function Services({ onPageChange }: ServicesProps) {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3">
-                        <h4 className="font-semibold mb-3">Key Features:</h4>
+                        <h4 className="font-semibold mb-3">Typical Use Cases:</h4>
                         {service.features.map((feature, featureIndex) => (
                           <motion.div
                             key={feature}
@@ -252,7 +218,7 @@ export default function Services({ onPageChange }: ServicesProps) {
               Our Proven Process
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We follow a systematic approach to ensure successful AI implementation and maximum ROI
+              Simple, transparent, and designed to minimize disruption to your daily operations.
             </p>
           </motion.div>
 
@@ -311,11 +277,11 @@ export default function Services({ onPageChange }: ServicesProps) {
                 className="bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
                 onClick={() => router.push('/contact')}
               >
-                Schedule a Consultation
+                Book a Free AI Audit
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg">
-                Download Service Guide
+              <Button variant="outline" size="lg" onClick={() => router.push('/contact')}>
+                See Example Automations
               </Button>
             </div>
           </motion.div>

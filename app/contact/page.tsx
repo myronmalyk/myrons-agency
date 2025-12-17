@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
 import { ConsultationCard } from '@/components/calendly'
+import { useRouter } from "next/navigation";
 
 type FormValues = {
   name: string
@@ -20,6 +21,9 @@ type FormValues = {
 }
 
 export default function Contact() {
+
+  const router = useRouter();
+
   const [status, setStatus] = useState<"idle"|"sending"|"ok"|"error">("idle")
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
@@ -69,27 +73,27 @@ export default function Contact() {
       icon: Mail,
       title: 'Email Us',
       details: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
-      description: "Send us an email and we'll respond within 24 hours"
+      description: "Send us an email and we’ll get back to you within one business day."
     },
     {
       icon: Phone,
       title: 'Call Us',
       details: process.env.NEXT_PUBLIC_CONTACT_PHONE,
-      description: 'Mon–Fri from 9am to 6pm PST'
+      description: 'Available Mon–Fri, 9am–6pm PST'
     },
     {
       icon: MapPin,
       title: 'Visit Us',
       details: 'Vancouver, BC',
-      description: 'Schedule a meeting at our office'
+      description: 'Serving hospitality businesses across Canada & the US'
     }
   ] as const
 
   const faqs = [
-    { question: 'How long does implementation take?', answer: 'Most implementations take 1-2 weeks depending on complexity and scope.' },
-    { question: 'Do you provide ongoing support?', answer: 'Yes, we offer 24/7 monitoring and support for all our automation solutions.' },
-    { question: 'What industries do you serve?', answer: 'We work with businesses across all industries, from startups to enterprises.' },
-    { question: 'How do you ensure data security?', answer: 'We follow enterprise-grade security practices and comply with industry standards.' },
+    { question: 'Q1: How long does implementation take?', answer: 'Most hospitality automations are implemented within 1–2 weeks, depending on complexity and scope.' },
+    { question: 'Q2: Do you provide ongoing support?', answer: 'Yes. We offer ongoing monitoring, optimization, and support depending on the solution implemented.' },
+    { question: 'Q3: What types of businesses do you work with?', answer: 'We specialize in hospitality, accommodation, and food service businesses.' },
+    { question: 'Q4: How do you handle data security?', answer: 'We follow best practices for data security and only use trusted, industry-standard tools.' },
   ] as const
 
   return (
@@ -108,14 +112,13 @@ export default function Contact() {
               📞 Get in Touch
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-              Let&apos;s Build the Future of{' '}
+              Book Your{' '}
               <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
-                Your Business
+                Free AI Audit
               </span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Ready to transform your operations with AI automation? We&apos;re here to help you
-              discover the perfect solution for your unique business needs.
+              Get a clear, practical automation plan tailored to your hospitality business — no obligation, no sales pressure.
             </p>
           </motion.div>
         </div>
@@ -160,10 +163,10 @@ export default function Contact() {
                 <CardHeader>
                   <CardTitle className="text-2xl flex items-center gap-2">
                     <MessageSquare className="w-6 h-6 text-blue-500" />
-                    Send us a Message
+                    Request Your Free AI Audit
                   </CardTitle>
                   <p className="text-muted-foreground">
-                    Fill out the form below and we&apos;ll get back to you within 24 hours.
+                    Tell us a bit about your business and we’ll review your workflows before the call.
                   </p>
                 </CardHeader>
 
@@ -217,7 +220,7 @@ export default function Contact() {
                       disabled={status === "sending"}
                       className="w-full bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600 group"
                     >
-                      {status === "sending" ? "Sending..." : "Send Message"}
+                      {status === "sending" ? "Sending..." : "Request Free AI Audit"}
                       <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
                     </Button>
 
@@ -229,7 +232,7 @@ export default function Contact() {
                     )}
 
                     <p className="text-sm text-muted-foreground text-center">
-                      By submitting this form, you agree to our privacy policy and terms of service.
+                      No spam. No obligation. Just a practical automation plan.
                     </p>
                   </form>
                 </CardContent>
@@ -243,24 +246,7 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-8"
             >
-              {/* Quick Contact */}
-              {/*<Card>
-                <CardHeader>
-                  <CardTitle className="text-xl flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-blue-500" />
-                    Schedule a Call
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">
-                    Prefer to talk? Schedule a 30-minute consultation call with our AI automation experts.
-                  </p>
-                  <Button variant="outline" className="w-full group">
-                    Book Consultation
-                    <Calendar className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
-                  </Button>
-                </CardContent>
-              </Card>*/}
+              
               <ConsultationCard/>
 
               {/* AI Illustration */}
@@ -269,7 +255,7 @@ export default function Contact() {
                 <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                   <div className="relative aspect-[16/9] w-full">
                     <Image
-                      src="/images/about-preview.png"
+                      src="/images/contact.png"
                       alt="AI Automation Consultation"
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
@@ -337,10 +323,10 @@ export default function Contact() {
             className="text-center mt-12"
           >
             <p className="text-muted-foreground mb-4">
-              Have a different question? We&apos;re here to help.
+              Ready to streamline your operations?
             </p>
-            <Button variant="outline" className="group">
-              View All FAQs
+            <Button variant="outline" className="group" onClick={() => router.push('/contact')}>
+             Book a Free AI Audit
               <MessageSquare className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
             </Button>
           </motion.div>
