@@ -6,6 +6,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://myrons.agency";
 
@@ -101,6 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </>
         )}
         <Analytics /> {/* Vercel Analytics Component */}
+        <SpeedInsights /> {/* Vercel Speed Insights Component */}
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         <Providers>
